@@ -52,7 +52,7 @@ class _MyAppState extends State<MyApp> {
           Consumer<ThemeProvider>(builder: (context, themeChangeProvider, ch) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'Blog',
+          title: 'News app',
           theme: Styles.themeData(themeChangeProvider.getDarkTheme, context),
           home: const HomeScreen(),
           routes: {},
