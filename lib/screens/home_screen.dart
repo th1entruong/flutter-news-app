@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app_flutter_course/consts/vars.dart';
+import 'package:news_app_flutter_course/inner_screens/search_screen.dart';
 import 'package:news_app_flutter_course/services/utils.dart';
 import 'package:news_app_flutter_course/widgets/articles_widget.dart';
 import 'package:news_app_flutter_course/widgets/drawer_widget.dart';
 import 'package:news_app_flutter_course/widgets/tabs.dart';
 import 'package:news_app_flutter_course/widgets/top_trending.dart';
 import 'package:news_app_flutter_course/widgets/vertical_spacing.dart';
+import 'package:page_transition/page_transition.dart';
 
 import '../widgets/loading_widget.dart';
 
@@ -46,8 +48,19 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           actions: [
             IconButton(
-              onPressed: () {},
-              icon: const Icon(IconlyBroken.search),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  PageTransition(
+                      type: PageTransitionType.rightToLeft,
+                      child: SearchScreen(),
+                      inheritTheme: true,
+                      ctx: context),
+                );
+              },
+              icon: const Icon(
+                IconlyBroken.search,
+              ),
             ),
           ],
         ),
