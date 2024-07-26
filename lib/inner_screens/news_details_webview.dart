@@ -1,17 +1,25 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:news_app_flutter_course/services/global_methods.dart';
 import 'package:news_app_flutter_course/services/utils.dart';
+import 'package:news_app_flutter_course/widgets/vertical_spacing.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class NewDetailsWebView extends StatefulWidget {
-  const NewDetailsWebView({Key? key}) : super(key: key);
+class NewsDetailsWebView extends StatefulWidget {
+  const NewsDetailsWebView({Key? key}) : super(key: key);
 
   @override
-  State<NewDetailsWebView> createState() => _NewDetailsWebViewState();
+  State<NewsDetailsWebView> createState() => _NewDetailsWebViewState();
 }
 
-class _NewDetailsWebViewState extends State<NewDetailsWebView> {
+class _NewDetailsWebViewState extends State<NewsDetailsWebView> {
   late WebViewController _viewViewController;
   double _progress = 0.0;
+  final url = "https://viblo.asia/p/gioi-thieu-ve-flutter-bWrZnNxrZxw";
   @override
   Widget build(BuildContext context) {
     final Color color = Utils(context).getColor;
@@ -26,6 +34,14 @@ class _NewDetailsWebViewState extends State<NewDetailsWebView> {
       },
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              IconlyBold.arrowLeft2,
+            ),
+          ),
           iconTheme: IconThemeData(color: color),
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           elevation: 0,
@@ -38,7 +54,9 @@ class _NewDetailsWebViewState extends State<NewDetailsWebView> {
           ),
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () async {
+                await _showModalSheetFct();
+              },
               icon: const Icon(
                 Icons.more_horiz,
               ),
@@ -54,8 +72,7 @@ class _NewDetailsWebViewState extends State<NewDetailsWebView> {
             ),
             Expanded(
               child: WebView(
-                initialUrl:
-                    "https://viblo.asia/p/gioi-thieu-ve-flutter-bWrZnNxrZxw",
+                initialUrl: url,
                 zoomEnabled: true,
                 onProgress: (progress) {
                   setState(() {
@@ -71,5 +88,83 @@ class _NewDetailsWebViewState extends State<NewDetailsWebView> {
         ),
       ),
     );
+  }
+
+  Future<void> _showModalSheetFct() async {
+    await showModalBottomSheet(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(20),
+          ),
+        ),
+        context: context,
+        builder: (context) {
+          return Container(
+            decoration: BoxDecoration(
+              color: Theme.of(context).cardColor,
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(20),
+              ),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const VerticalSpacing(20),
+                Center(
+                  child: Container(
+                    height: 5,
+                    width: 35,
+                    decoration: BoxDecoration(
+                      color: Colors.grey,
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
+                ),
+                const Text(
+                  'More option',
+                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
+                ),
+                const Divider(
+                  thickness: 2,
+                ),
+                const VerticalSpacing(20),
+                ListTile(
+                  leading: const Icon(Icons.share),
+                  title: const Text('Share'),
+                  onTap: () async {
+                    try {
+                      await Share.share('url', subject: 'Look what I made!');
+                    } catch (err) {
+                      GlobalMethods.errorDialog(
+                          errorMessage: err.toString(), context: context);
+                    }
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.open_in_browser),
+                  title: const Text('Open in browser'),
+                  onTap: () async {
+                    if (!await launchUrl(Uri.parse(url))) {
+                      throw Exception('Could not launch $url');
+                    }
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.refresh),
+                  title: const Text('Refresh'),
+                  onTap: () async {
+                    try {
+                      await _viewViewController.reload();
+                    } catch (err) {
+                      log("err occured $err");
+                    } finally {
+                      Navigator.pop(context);
+                    }
+                  },
+                ),
+              ],
+            ),
+          );
+        });
   }
 }

@@ -1,5 +1,6 @@
 //Packages
 import 'package:flutter/material.dart';
+import 'package:news_app_flutter_course/inner_screens/blog_details.dart';
 import 'package:provider/provider.dart';
 
 //Screens
@@ -55,7 +56,9 @@ class _MyAppState extends State<MyApp> {
           title: 'News app',
           theme: Styles.themeData(themeChangeProvider.getDarkTheme, context),
           home: const HomeScreen(),
-          routes: {},
+          routes: {
+            NewsDetailsScreen.routeName: (ctx) => const NewsDetailsScreen(),
+          },
         );
       }),
     );

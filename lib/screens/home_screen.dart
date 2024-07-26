@@ -12,8 +12,6 @@ import 'package:news_app_flutter_course/widgets/top_trending.dart';
 import 'package:news_app_flutter_course/widgets/vertical_spacing.dart';
 import 'package:page_transition/page_transition.dart';
 
-import '../widgets/loading_widget.dart';
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -131,16 +129,16 @@ class _HomeScreenState extends State<HomeScreen> {
                               itemBuilder: ((context, index) {
                                 return Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: InkWell(
-                                    onTap: () {
-                                      setState(() {
-                                        currentPageIndex = index;
-                                      });
-                                    },
-                                    child: Material(
-                                      color: currentPageIndex == index
-                                          ? Colors.blue
-                                          : Theme.of(context).cardColor,
+                                  child: Material(
+                                    color: currentPageIndex == index
+                                        ? Colors.blue
+                                        : Theme.of(context).cardColor,
+                                    child: InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          currentPageIndex = index;
+                                        });
+                                      },
                                       child: Center(
                                           child: Padding(
                                         padding: const EdgeInsets.all(8.0),

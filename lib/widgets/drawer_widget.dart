@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app_flutter_course/inner_screens/bookmarks_screen.dart';
-import 'package:news_app_flutter_course/inner_screens/search_screen.dart';
 import 'package:news_app_flutter_course/widgets/vertical_spacing.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-
 import '../providers/theme_provider.dart';
 
 class DrawerWidget extends StatefulWidget {
@@ -68,7 +66,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   context,
                   PageTransition(
                       type: PageTransitionType.rightToLeft,
-                      child: BookmarkScreen(),
+                      child: const BookmarkScreen(),
                       inheritTheme: true,
                       ctx: context),
                 );
