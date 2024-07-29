@@ -51,13 +51,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   context,
                   PageTransition(
                       type: PageTransitionType.rightToLeft,
-                      child: SearchScreen(),
+                      child: const SearchScreen(),
                       inheritTheme: true,
                       ctx: context),
                 );
               },
               icon: const Icon(
-                IconlyBroken.search,
+                IconlyLight.search,
               ),
             ),
           ],
@@ -82,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         newsType = NewsType.allNews;
                       });
                     },
-                    fontSize: newsType == NewsType.allNews ? 20 : 14,
+                    fontSize: newsType == NewsType.allNews ? 22 : 14,
                   ),
                   const SizedBox(width: 25),
                   TabsWidget(
@@ -98,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         newsType = NewsType.topTrending;
                       });
                     },
-                    fontSize: newsType == NewsType.topTrending ? 20 : 14,
+                    fontSize: newsType == NewsType.topTrending ? 22 : 14,
                   ),
                 ],
               ),
@@ -234,6 +234,7 @@ class _HomeScreenState extends State<HomeScreen> {
       onPressed: () {
         function();
       },
+      child: Text(text),
       style: ElevatedButton.styleFrom(
         primary: Colors.blue,
         padding: const EdgeInsets.all(6),
@@ -242,7 +243,6 @@ class _HomeScreenState extends State<HomeScreen> {
           fontWeight: FontWeight.bold,
         ),
       ),
-      child: Text(text),
     );
   }
 }

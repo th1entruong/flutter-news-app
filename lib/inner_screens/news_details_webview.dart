@@ -17,7 +17,7 @@ class NewsDetailsWebView extends StatefulWidget {
 }
 
 class _NewDetailsWebViewState extends State<NewsDetailsWebView> {
-  late WebViewController _viewViewController;
+  late WebViewController _webViewController;
   double _progress = 0.0;
   final url = "https://viblo.asia/p/gioi-thieu-ve-flutter-bWrZnNxrZxw";
   @override
@@ -25,8 +25,8 @@ class _NewDetailsWebViewState extends State<NewsDetailsWebView> {
     final Color color = Utils(context).getColor;
     return WillPopScope(
       onWillPop: () async {
-        if (await _viewViewController.canGoBack()) {
-          _viewViewController.goBack();
+        if (await _webViewController.canGoBack()) {
+          _webViewController.goBack();
           return false;
         } else {
           return true;
@@ -80,7 +80,7 @@ class _NewDetailsWebViewState extends State<NewsDetailsWebView> {
                   });
                 },
                 onWebViewCreated: (controller) {
-                  _viewViewController = controller;
+                  _webViewController = controller;
                 },
               ),
             ),
@@ -120,10 +120,12 @@ class _NewDetailsWebViewState extends State<NewsDetailsWebView> {
                     ),
                   ),
                 ),
+                const VerticalSpacing(20),
                 const Text(
                   'More option',
                   style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
                 ),
+                const VerticalSpacing(20),
                 const Divider(
                   thickness: 2,
                 ),
@@ -145,7 +147,7 @@ class _NewDetailsWebViewState extends State<NewsDetailsWebView> {
                   title: const Text('Open in browser'),
                   onTap: () async {
                     if (!await launchUrl(Uri.parse(url))) {
-                      throw Exception('Could not launch $url');
+                      throw 'Could not launch $url';
                     }
                   },
                 ),
@@ -154,9 +156,9 @@ class _NewDetailsWebViewState extends State<NewsDetailsWebView> {
                   title: const Text('Refresh'),
                   onTap: () async {
                     try {
-                      await _viewViewController.reload();
+                      await _webViewController.reload();
                     } catch (err) {
-                      log("err occured $err");
+                      log("error occured $err");
                     } finally {
                       Navigator.pop(context);
                     }

@@ -68,12 +68,14 @@ class _SearchScreenState extends State<SearchScreen> {
                         keyboardType: TextInputType.text,
                         onEditingComplete: () {},
                         decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.only(bottom: 8 / 5),
+                          contentPadding: const EdgeInsets.only(
+                            bottom: 8 / 5,
+                          ),
                           hintText: "Search",
                           enabledBorder: InputBorder.none,
                           focusedBorder: InputBorder.none,
                           suffix: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            padding: const EdgeInsets.symmetric(horizontal: 5),
                             child: GestureDetector(
                               onTap: () {
                                 _searchTextController.clear();

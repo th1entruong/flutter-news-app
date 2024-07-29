@@ -53,12 +53,12 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               ),
             ),
             const VerticalSpacing(20),
-            ListTiles(
+            ListTilesWidget(
               label: 'Home',
               icon: IconlyBold.home,
               fct: () {},
             ),
-            ListTiles(
+            ListTilesWidget(
               label: 'Bookmark',
               icon: IconlyBold.bookmark,
               fct: () {
@@ -97,8 +97,8 @@ class _DrawerWidgetState extends State<DrawerWidget> {
   }
 }
 
-class ListTiles extends StatelessWidget {
-  const ListTiles({
+class ListTilesWidget extends StatelessWidget {
+  const ListTilesWidget({
     Key? key,
     required this.label,
     required this.fct,

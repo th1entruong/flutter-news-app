@@ -48,7 +48,7 @@ class TopTrendingWidget extends StatelessWidget {
               Row(
                 children: [
                   IconButton(
-                      onPressed: () async {
+                      onPressed: () {
                         Navigator.push(
                           context,
                           PageTransition(

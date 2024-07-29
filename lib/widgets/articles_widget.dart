@@ -59,53 +59,55 @@ class ArticlesWidget extends StatelessWidget {
                     ),
                     const SizedBox(width: 10),
                     Expanded(
-                        child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Flutter' * 100,
-                          textAlign: TextAlign.justify,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: smallTextStyle,
-                        ),
-                        const VerticalSpacing(5),
-                        Align(
-                          alignment: Alignment.topRight,
-                          child: Text(
-                            '🕒 Reading time',
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Flutter' * 100,
+                            textAlign: TextAlign.justify,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
                             style: smallTextStyle,
                           ),
-                        ),
-                        FittedBox(
-                          child: Row(
-                            children: [
-                              IconButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                        type: PageTransitionType.rightToLeft,
-                                        child: const NewsDetailsWebView(),
-                                        inheritTheme: true,
-                                        ctx: context),
-                                  );
-                                },
-                                icon: const Icon(
-                                  Icons.link,
-                                  color: Colors.blue,
-                                ),
-                              ),
-                              Text(
-                                '22-7-2024' * 2,
-                                style: smallTextStyle,
-                              ),
-                            ],
+                          const VerticalSpacing(5),
+                          Align(
+                            alignment: Alignment.topRight,
+                            child: Text(
+                              '🕒 Reading time',
+                              style: smallTextStyle,
+                            ),
                           ),
-                        )
-                      ],
-                    ))
+                          FittedBox(
+                            child: Row(
+                              children: [
+                                IconButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      PageTransition(
+                                          type: PageTransitionType.rightToLeft,
+                                          child: const NewsDetailsWebView(),
+                                          inheritTheme: true,
+                                          ctx: context),
+                                    );
+                                  },
+                                  icon: const Icon(
+                                    Icons.link,
+                                    color: Colors.blue,
+                                  ),
+                                ),
+                                Text(
+                                  '22-7-2024' * 2,
+                                  maxLines: 1,
+                                  style: smallTextStyle,
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
